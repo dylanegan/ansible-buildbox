@@ -21,3 +21,6 @@
 
 - name: Configure upstart
   template: src=upstart.j2 dest=/etc/init/buildbox-agent.conf
+
+- name: start buildbox-agent
+  command: service buildbox-agent start
