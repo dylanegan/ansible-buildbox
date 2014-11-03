@@ -2,6 +2,7 @@
 buildbox_arch: "amd64"
 buildbox_group: "buildbox"
 buildbox_home: "/home/buildbox"
+buildbox_meta_data: []
 buildbox_token: ""
 buildbox_user: "buildbox"
 buildbox_version: "1.0-beta.5"

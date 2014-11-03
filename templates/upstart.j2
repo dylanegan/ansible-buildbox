@@ -18,5 +18,5 @@ setuid {{ buildbox_user }}
 setgid {{ buildbox_group }}
 
 script
-  exec $BUILDBOX_HOME/.buildbox/bin/buildbox-agent start --bootstrap-script $BUILDBOX_HOME/.buildbox/bootstrap.sh --token $BUILDBOX_TOKEN
+  exec $BUILDBOX_HOME/.buildbox/bin/buildbox-agent start --bootstrap-script $BUILDBOX_HOME/.buildbox/bootstrap.sh {% for meta_data in buildbox_meta_data %}--meta-data {{ meta_data }} {% endfor %}--token $BUILDBOX_TOKEN
 end script
