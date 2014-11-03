@@ -5,16 +5,18 @@ description "buildbox-agent"
 #
 # buildbox-agent
 
-start on (filesystem and net-device-up)
-stop on runlevel [!2345]
+env BUILDBOX_HOME={{ buildbox_home }}
+env BUILDBOX_TOKEN={{ buildbox_token }}
 
-# If the process quits unexpectadly trigger a respawn
 respawn
+respawn limit 15 5
+
+start on runlevel [2345]
+stop on runlevel [06]
+
+setuid {{ buildbox_user }}
+setgid {{ buildbox_group }}
 
 script
-  . /etc/default/buildbox
-  exec start-stop-daemon --start --chuid $BUILDBOX_USER \
-    --make-pidfile --pidfile /var/run/buildbox.pid \
-    --exec /usr/local/bin/buildbox-agent -- start \
-    --access-token $BUILDBOX_TOKEN >> /var/log/buildbox-agent.log 2>&1
+  exec $BUILDBOX_HOME/.buildbox/bin/buildbox-agent start --bootstrap-script $BUILDBOX_HOME/.buildbox/bootstrap.sh --token $BUILDBOX_TOKEN
 end script
