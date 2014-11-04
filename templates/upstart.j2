@@ -8,6 +8,12 @@ description "buildbox-agent"
 env BUILDBOX_HOME={{ buildbox_home }}
 env BUILDBOX_TOKEN={{ buildbox_token }}
 
+env HOME={{ buildbox_home }}
+export HOME
+
+env DOCKER_HOST={{ docker_host }}
+export DOCKER_HOST
+
 respawn
 respawn limit 15 5
 

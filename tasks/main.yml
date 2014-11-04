@@ -4,6 +4,9 @@
 - name: Create buildbox user
   user: name={{ buildbox_user }} comment="buildbox" group={{ buildbox_group }} home={{ buildbox_home }} system=yes
 
+- name: Export DOCKER_HOST
+  lineinfile: dest={{ buildbox_home }}/.bashrc line="export DOCKER_HOST={{ docker_host }}" insertafter=EOF
+
 - name: Create .buildbox directory
   file: path={{ buildbox_home }}/.buildbox owner={{ buildbox_user }} group={{ buildbox_group }} mode=0755 state=directory
 

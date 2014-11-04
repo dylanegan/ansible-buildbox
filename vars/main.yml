@@ -6,3 +6,4 @@ buildbox_meta_data: []
 buildbox_token: ""
 buildbox_user: "buildbox"
 buildbox_version: "1.0-beta.5"
+docker_host: "tcp://localhost:4243"
